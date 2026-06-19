@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>SEQ 構域｜網站設計與前端開發</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+    }
+
+    .logo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo-img{
+  height:42px;
+  width:auto;
+  display:block;
+}
+
+    body{
+      margin:0;
+      font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;
+      background:#f7f7f4;
+      color:#0A0A0A;
+      line-height:1.8;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:50;
+      background:rgba(255,255,255,.85);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(0,0,0,.06);
+    }
+
+    .nav{
+      max-width:1180px;
+      margin:auto;
+      padding:16px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo-mark{
+      width:36px;
+      height:36px;
+      border-radius:10px;
+      background:#2C7A78;
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      letter-spacing:.15em;
+    }
+
+    .logo-title{
+      font-size:14px;
+      letter-spacing:.35em;
+      font-weight:700;
+    }
+
+    .logo-sub{
+      font-size:11px;
+      letter-spacing:.3em;
+      color:rgba(0,0,0,.5);
+    }
+
+    nav{
+      display:flex;
+      gap:32px;
+      font-size:12px;
+      letter-spacing:.22em;
+      color:rgba(0,0,0,.6);
+    }
+
+    nav a:hover{
+      color:#2C7A78;
+    }
+
+    .nav-btn{
+      background:#0A0A0A;
+      color:white;
+      padding:10px 18px;
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:.18em;
+    }
+
+    .nav-btn:hover{
+      background:#2C7A78;
+    }
+
+    section{
+      padding:90px 20px;
+    }
+
+    .container{
+      max-width:1180px;
+      margin:auto;
+    }
+
+    .hero{
+      padding-top:150px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      color:#2C7A78;
+      font-size:12px;
+      letter-spacing:.35em;
+      margin-bottom:24px;
+    }
+
+    h1{
+      font-size:58px;
+      line-height:1.25;
+      letter-spacing:.08em;
+      margin:0;
+      font-weight:600;
+    }
+
+    h1 span{
+      color:#2C7A78;
+    }
+
+    .hero p{
+      margin-top:28px;
+      color:rgba(0,0,0,.6);
+      max-width:560px;
+    }
+
+    .btn-row{
+      margin-top:36px;
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .btn-primary,
+    .btn-outline{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:15px 28px;
+      border-radius:999px;
+      font-size:14px;
+      letter-spacing:.18em;
+    }
+
+    .btn-primary{
+      background:#2C7A78;
+      color:white;
+      box-shadow:0 15px 30px rgba(44,122,120,.18);
+    }
+
+    .btn-primary:hover{
+      background:#246462;
+    }
+
+    .btn-outline{
+      border:1px solid rgba(0,0,0,.16);
+    }
+
+    .btn-outline:hover{
+      border-color:#2C7A78;
+      color:#2C7A78;
+    }
+
+    .visual-card{
+      position:relative;
+      aspect-ratio:1/1;
+      background:white;
+      border-radius:32px;
+      box-shadow:0 25px 60px rgba(0,0,0,.1);
+      padding:48px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      overflow:hidden;
+    }
+
+    .circle{
+      position:absolute;
+      right:-80px;
+      top:-80px;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      background:rgba(63,167,163,.1);
+    }
+
+    .big-mark{
+      position:relative;
+      width:112px;
+      height:112px;
+      border-radius:26px;
+      background:linear-gradient(135deg,#2C7A78,#AEE3E1);
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:52px;
+      font-weight:600;
+      box-shadow:0 18px 36px rgba(44,122,120,.25);
+    }
+
+    .visual-card h2{
+      margin:38px 0 0;
+      font-size:30px;
+      letter-spacing:.35em;
+      font-weight:500;
+    }
+
+    .visual-card .zh{
+      margin-top:12px;
+      letter-spacing:.45em;
+      color:rgba(0,0,0,.7);
+    }
+
+    .line{
+      margin-top:24px;
+      width:48px;
+      height:3px;
+      background:#3FA7A3;
+    }
+
+    .slogan{
+      margin-top:30px;
+      font-size:13px;
+      letter-spacing:.2em;
+      color:rgba(0,0,0,.5);
+      line-height:1.9;
+    }
+
+    .dark{
+      background:#0A0A0A;
+      color:white;
+    }
+
+    .problem-grid{
+      display:grid;
+      grid-template-columns:1fr 2fr;
+      gap:40px;
+      align-items:center;
+    }
+
+    .problem-grid h2{
+      font-size:40px;
+      line-height:1.4;
+      letter-spacing:.08em;
+      margin:0;
+    }
+
+    .problem-cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .problem-card{
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:22px;
+      padding:26px;
+      color:rgba(255,255,255,.82);
+    }
+
+    .check{
+      color:#AEE3E1;
+      font-size:26px;
+      margin-bottom:16px;
+    }
+
+    .section-title{
+      margin-bottom:48px;
+    }
+
+    .section-title h2{
+      font-size:46px;
+      letter-spacing:.08em;
+      margin:0;
+    }
+
+ .services{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+
+  align-items:stretch;
+}
+
+    .service-card{
+      background:white;
+      border:1px solid rgba(0,0,0,.05);
+      border-radius:28px;
+      padding:30px;
+      box-shadow:0 8px 20px rgba(0,0,0,.03);
+      transition:.3s;
+    }
+
+    .service-card:hover{
+      transform:translateY(-6px);
+    }
+
+    .icon{
+      width:48px;
+      height:48px;
+      border-radius:18px;
+      background:rgba(63,167,163,.1);
+      color:#2C7A78;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:30px;
+      font-size:24px;
+    }
+
+    .service-card h3{
+      margin:0;
+      font-size:20px;
+      letter-spacing:.12em;
+    }
+
+    .subtitle{
+      margin-top:8px;
+      font-size:12px;
+      letter-spacing:.22em;
+      color:#2C7A78;
+    }
+
+    .service-card p{
+      margin-top:20px;
+      font-size:14px;
+      color:rgba(0,0,0,.6);
+    }
+
+    .white{
+      background:white;
+    }
+
+    .process-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:flex-start;
+    }
+
+    .process-grid h2{
+      font-size:46px;
+      line-height:1.3;
+      letter-spacing:.08em;
+      margin:0;
+    }
+
+    .process-text{
+      margin-top:26px;
+      color:rgba(0,0,0,.6);
+    }
+
+    .steps{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .step{
+      display:flex;
+      gap:20px;
+      align-items:flex-start;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:20px;
+      padding:20px;
+    }
+
+    .num{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background:#2C7A78;
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+      font-size:14px;
+    }
+
+    .cta-box{
+      background:#0A0A0A;
+      color:white;
+      border-radius:32px;
+      padding:56px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:56px;
+    }
+
+    .cta-box h2{
+      font-size:46px;
+      line-height:1.3;
+      letter-spacing:.08em;
+      margin:0;
+    }
+
+    .cta-box p{
+      color:rgba(255,255,255,.65);
+    }
+
+    .contact-list{
+      margin-top:30px;
+      color:rgba(255,255,255,.85);
+    }
+
+    .contact-list p{
+      color:rgba(255,255,255,.85);
+      margin:10px 0;
+    }
+
+    form{
+      background:white;
+      color:#0A0A0A;
+      border-radius:28px;
+      padding:32px;
+    }
+
+    form h3{
+      margin-top:0;
+      font-size:22px;
+      letter-spacing:.15em;
+    }
+
+    input,
+    textarea{
+      width:100%;
+      border:1px solid rgba(0,0,0,.1);
+      border-radius:18px;
+      padding:14px 16px;
+      margin-bottom:16px;
+      font-size:15px;
+      outline:none;
+      font-family:inherit;
+    }
+
+    textarea{
+      min-height:130px;
+      resize:vertical;
+    }
+
+    input:focus,
+    textarea:focus{
+      border-color:#3FA7A3;
+    }
+
+    button{
+      width:100%;
+      border:none;
+      background:#2C7A78;
+      color:white;
+      padding:16px;
+      border-radius:999px;
+      letter-spacing:.18em;
+      cursor:pointer;
+      font-size:14px;
+    }
+
+    button:hover{
+      background:#246462;
+    }
+
+    .form-note{
+      text-align:center;
+      font-size:12px;
+      color:rgba(0,0,0,.4);
+      margin-top:14px;
+    }
+
+    footer{
+      padding:40px 20px;
+      text-align:center;
+      font-size:12px;
+      letter-spacing:.25em;
+      color:rgba(0,0,0,.4);
+    }
+
+    @media(max-width:900px){
+      nav{
+        display:none;
+      }
+
+      .hero-grid,
+      .problem-grid,
+      .process-grid,
+      .cta-box{
+        grid-template-columns:1fr;
+      }
+
+      .services,
+      .problem-cards{
+        grid-template-columns:1fr;
+      }
+
+      h1{
+        font-size:40px;
+      }
+
+      .section-title h2,
+      .process-grid h2,
+      .cta-box h2{
+        font-size:34px;
+      }
+
+      .visual-card{
+        padding:32px;
+      }
+
+      .cta-box{
+        padding:32px;
+      }
+    }
+
+
+.service-card{
+  display:flex;
+  flex-direction:column;
+}
+
+.service-card{
+  background:white;
+  border:1px solid rgba(0,0,0,.05);
+  border-radius:28px;
+  padding:30px;
+  box-shadow:0 8px 20px rgba(0,0,0,.03);
+
+  display:flex;
+  flex-direction:column;
+
+  height:100%;
+}
+
+.project-link{
+  margin-top:auto;
+
+  color:#2C7A78;
+  font-weight:600;
+
+  display:inline-block;
+}
+
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+    <div class="nav">
+<a href="#top" class="logo">
+
+  <img
+    src="image/logo.png"
+    alt="SEQ 構域"
+    class="logo-img"
+  >
+
+  <div>
+    <div class="logo-title">
+      SEQ 構域    </div>
+
+ <div class="logo-sub">
+  Web Design & Development
+</div>
+  </div>
+
+</a>
+
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <a class="nav-btn" href="https://line.me/ti/p/peiju2012" target="_blank">
+    LINE 諮詢
+  </a>
+</div>
+
+
+  </header>
+<section id="top" class="hero">
+  <div class="container hero-grid">
+
+    <div>
+
+      <div class="eyebrow">
+        REACT × WEB DESIGN × SEO
+      </div>
+
+      <h1>
+        打造專屬品牌官網<br>
+        提升品牌形象與曝光
+      </h1>
+
+      <p>
+        提供品牌官網建置、企業形象網站、
+        Landing Page、SEO優化與後台管理系統開發。
+        從網站規劃、視覺設計到前端開發完整執行，
+        協助企業建立專業形象並提升數位競爭力。
+      </p>
+
+      <div class="btn-row">
+        <a
+          class="btn-primary"
+          href="https://line.me/ti/p/peiju2012"
+          target="_blank"
+        >
+          立即 LINE 諮詢 →
+        </a>
+
+        <a
+          class="btn-outline"
+          href="#services"
+        >
+          查看服務內容
+        </a>
+      </div>
+
+    </div>
+
+    <div class="visual-card">
+
+      <div class="circle"></div>
+
+      <img
+        src="image/logo.png"
+        alt="Panny Studio"
+        style="
+          width:120px;
+          height:auto;
+          margin-bottom:24px;
+        "
+      >
+
+    <h2>SEQ 構域</h2>
+
+      <div class="zh">
+        網站設計 × 前端開發
+      </div>
+
+      <div class="line"></div>
+
+      <div class="slogan">
+        DESIGN × DEVELOPMENT × EXPERIENCE
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="dark">
+  <div class="container problem-grid">
+    <div>
+      <div class="eyebrow">WHY WEBSITE MATTERS</div>
+      <h2>
+        有品牌實力，<br>
+        卻沒有專業官網？
+      </h2>
+    </div>
+
+
+<div class="problem-cards">
+
+  <div class="problem-card">
+    <div class="check">✓</div>
+    官網老舊，無法展現品牌價值
+  </div>
+
+  <div class="problem-card">
+    <div class="check">✓</div>
+    手機版體驗不佳，流失潛在客戶
+  </div>
+
+  <div class="problem-card">
+    <div class="check">✓</div>
+    缺乏 SEO 規劃，搜尋曝光不足
+  </div>
+
+</div>
+
+
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+
+
+<div class="section-title">
+  <div class="eyebrow">OUR SERVICES</div>
+  <h2>服務項目</h2>
+</div>
+
+<div class="services">
+
+  <div class="service-card">
+    <div class="icon">◎</div>
+    <h3>品牌官網建置</h3>
+    <div class="subtitle">Corporate Website</div>
+    <p>
+      建立專業企業形象網站，
+      展現品牌特色與服務價值。
+    </p>
+  </div>
+
+  <div class="service-card">
+    <div class="icon">◈</div>
+    <h3>React 前端開發</h3>
+    <div class="subtitle">Frontend Development</div>
+    <p>
+      使用 React 建置高效能網站，
+      提供流暢互動體驗。
+    </p>
+  </div>
+
+  <div class="service-card">
+    <div class="icon">△</div>
+    <h3>SEO 優化</h3>
+    <div class="subtitle">Search Optimization</div>
+    <p>
+      提升 Google 搜尋曝光，
+      增加自然流量與品牌能見度。
+    </p>
+  </div>
+
+  <div class="service-card">
+    <div class="icon">▦</div>
+    <h3>後台管理系統</h3>
+    <div class="subtitle">CMS System</div>
+    <p>
+      提供產品、案例與內容管理功能，
+      方便企業自行維護網站。
+    </p>
+  </div>
+
+</div>
+
+
+  </div>
+</section>
+
+<section id="projects">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="eyebrow">
+        FEATURED PROJECTS
+      </div>
+
+      <h2>
+        精選作品
+      </h2>
+
+    </div>
+
+    <div class="services">
+
+      <div class="service-card">
+
+        <h3>ATHENE LIGHT</h3>
+
+        <div class="subtitle">
+          Brand Website
+        </div>
+
+        <p>
+          品牌照明官網建置，
+          包含產品管理、案例展示、
+          多語系切換、SEO優化與後台管理系統。
+        </p>
+
+       <a
+  href="https://athenelight.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="project-link"
+>
+  查看網站 →
+</a>
+
+      </div>
+
+      <div class="service-card">
+
+      <h3>Taiwan Travel</h3>
+
+        <div class="subtitle">
+          Landing Page
+        </div>
+
+        <p>
+          旅遊導流 Landing Page，
+          著重於行動裝置體驗、
+          SEO與轉換率優化。
+        </p>
+
+ <a
+  href="https://peiju1011-wq.github.io/taiwan-travel-landing/"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="project-link"
+>
+  查看網站 →
+</a>
+      </div>
+
+      <div class="service-card">
+
+        <h3>Lantern Festival</h3>
+
+        <div class="subtitle">
+          Event Website
+        </div>
+
+        <p>
+          節慶活動宣傳網站，
+          整合活動資訊與品牌視覺設計，
+          提升活動曝光效果。
+        </p>
+
+        <a
+  href="https://peiju1011-wq.github.io/Lantern-Festival/"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="project-link"
+>
+  查看網站 →
+</a>
+
+      </div>
+
+      <div class="service-card">
+
+        <h3>PEIRUHUANG</h3>
+
+        <div class="subtitle">
+          Portfolio Website
+        </div>
+
+        <p>
+          個人作品集網站，
+          展示前端開發、
+          UI設計與網站建置作品。
+        </p>
+
+     <a
+  href="https://peiju1011-wq.github.io/PEIRUHUANG/"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="project-link"
+>
+  查看網站 →
+</a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="process" class="white">
+  <div class="container process-grid">
+
+
+<div>
+  <div class="eyebrow">WORK PROCESS</div>
+
+  <h2>
+    從需求到上線<br>
+    一站式網站建置
+  </h2>
+
+  <p class="process-text">
+    從品牌需求訪談、網站規劃到正式上線，
+    協助企業打造兼具美感、效能與品牌形象的專業網站。
+  </p>
+</div>
+
+<div class="steps">
+
+  <div class="step">
+    <div class="num">1</div>
+    <div>需求訪談｜了解品牌定位與網站目標</div>
+  </div>
+
+  <div class="step">
+    <div class="num">2</div>
+    <div>網站規劃｜架構、內容與功能規劃</div>
+  </div>
+
+  <div class="step">
+    <div class="num">3</div>
+    <div>視覺設計｜版面設計與品牌形象呈現</div>
+  </div>
+
+  <div class="step">
+    <div class="num">4</div>
+    <div>網站開發｜React 前端開發與功能建置</div>
+  </div>
+
+  <div class="step">
+    <div class="num">5</div>
+    <div>測試上線｜SEO優化、部署與後續維護</div>
+  </div>
+
+</div>
+
+
+  </div>
+</section>
+
+
+<section>
+  <div class="container">
+
+<div class="section-title">
+  <div class="eyebrow">
+    PROJECT ESTIMATE
+  </div>
+
+  <h2>
+    專案參考範圍
+  </h2>
+</div>
+
+<div class="services">
+
+  <div class="service-card">
+    <h3>小型網站</h3>
+
+    <p>
+      個人品牌網站、單頁式網站、
+      活動頁面與基礎企業形象網站。
+      <br><br>
+      ✓ RWD 響應式設計
+      <br>
+      ✓ 聯絡表單
+      <br>
+      ✓ 基礎 SEO
+    </p>
+
+    <div class="subtitle">
+      NT$8,000 ~ 15,000
+    </div>
+  </div>
+
+  <div class="service-card">
+    <h3>中型網站</h3>
+
+    <p>
+      品牌官網、產品展示網站、
+      案例展示網站。
+      <br><br>
+      ✓ RWD 響應式設計
+      <br>
+      ✓ SEO 優化
+      <br>
+      ✓ 產品分類
+      <br>
+      ✓ 案例管理
+    </p>
+
+    <div class="subtitle">
+      NT$20,000 ~ 40,000
+    </div>
+  </div>
+
+  <div class="service-card">
+    <h3>大型網站</h3>
+
+    <p>
+      購物網站、會員系統、
+      企業管理平台。
+      <br><br>
+      ✓ 購物車功能
+      <br>
+      ✓ 金流串接
+      <br>
+      ✓ 訂單管理
+      <br>
+      ✓ 後台管理系統
+    </p>
+
+    <div class="subtitle">
+      NT$30,000 ~ 80,000+
+    </div>
+  </div>
+
+  <div class="service-card">
+    <h3>客製化開發</h3>
+
+    <p>
+      React 網站、多語系網站、
+      CMS 後台與特殊功能開發。
+      <br><br>
+      ✓ React
+      <br>
+      ✓ Supabase
+      <br>
+      ✓ 多語系
+      <br>
+      ✓ 客製功能開發
+    </p>
+
+    <div class="subtitle">
+      依需求報價
+    </div>
+  </div>
+
+</div>
+
+<p style="
+  text-align:center;
+  margin-top:40px;
+  color:#777;
+  font-size:14px;
+">
+  以上價格為參考範圍，實際報價將依頁面數量、
+  功能需求與開發工時進行評估。
+</p>
+
+
+  </div>
+</section>
+
+
+    </div>
+
+  </div>
+</section>
+
+
+
+  <section>
+    <div class="container cta-box">
+      <div>
+        <div class="eyebrow">CONTACT</div>
+
+<h2>
+  準備打造你的<br>
+  品牌網站了嗎？
+</h2>
+
+<p>
+  我專注於品牌官網設計與前端開發，
+  協助企業與個人品牌建立專業形象網站。
+  無論是新網站建置、網站改版、
+  SEO優化或後台功能開發，
+  都歡迎與我聊聊你的想法。
+</p>
+    <div class="contact-list">
+      <p>LINE：peiju2012</p>
+      <p>Email：inflowtoline@gmail.com</p>
+      <p>品牌官網 / Landing Page / SEO 優化 / 客製功能開發</p>
+    </div>
+  </div>
+
+  <form
+    id="contact"
+    action="https://formspree.io/f/xdaanzjk"
+    method="POST"
+  >
+    <h3>合作諮詢</h3>
+
+    <input
+      name="name"
+      placeholder="你的名字 / 店名"
+    >
+
+    <input
+      name="contact"
+      placeholder="聯絡方式（LINE / Email / 電話）"
+    >
+
+    <textarea
+      name="message"
+      placeholder="簡單描述你的需求，例如：
+品牌官網建置、
+產品展示網站、
+網站改版、
+SEO優化、
+後台管理系統開發"
+    ></textarea>
+
+    <button type="submit">
+      送出諮詢 →
+    </button>
+
+    <div class="form-note">
+      或直接 LINE：peiju2012
+    </div>
+  </form>
+</div>
+
+
+  </section>
+
+<footer>
+  © SEQ 構域｜Design × Development × Experience
+</footer>
+
+</body>
+</html>
